@@ -1,0 +1,28 @@
+ type Mutation {
+     User(id: ID): User
+ }
+
+ type Query {
+     User(id: ID): User
+ }
+
+ type User {
+     id: ID,
+     email: String,
+     password: String,
+     isAdmin: Boolean,
+     deleted: Boolean,
+     token: String,
+
+     create(email: String, password: String): userData
+     login(email: String, password: String): userData
+     getAll: [User]
+     getOne(_id: ID): userData
+ }
+
+ type userData {
+     email: String,
+     password: String,
+     token: String
+}
+

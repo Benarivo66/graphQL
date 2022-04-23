@@ -1,0 +1,33 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "description": "graphql gateway for grpc server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthony-deca/graphQL.git"
+  },
+  "author": "Anthony Izekor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthony-deca/graphQL/issues"
+  },
+  "homepage": "https://github.com/anthony-deca/graphQL#readme",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.6.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-graphql": "^0.9.0",
+    "google-protobuf": "^3.9.0",
+    "graphql": "^14.4.2",
+    "service-specs": "/Users/Mac/Documents/gRPC_Server/service_specs"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
+
