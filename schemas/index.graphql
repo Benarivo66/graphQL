@@ -18,6 +18,7 @@
      login(email: String, password: String): userData
      getAll: [User]
      getOne(_id: ID): userData
+     deleteOne(_id: ID): userData
  }
 
  type userData {
