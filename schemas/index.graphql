@@ -14,11 +14,12 @@
      deleted: Boolean,
      token: String,
 
-     create(email: String, password: String): userData
-     login(email: String, password: String): userData
+     create(email: String, password: String): User
+     login(email: String, password: String): User
      getAll: [User]
-     getOne(_id: ID): userData
-     deleteOne(_id: ID): userData
+     getOne(_id: ID): User
+     deleteOne(_id: ID): User
+     update(_id: ID, email: String, isAdmin: Boolean): User
  }
 
  type userData {

@@ -79,4 +79,14 @@ module.exports = class User{
 
         return graphqlResponse;
     }
+    async update(user){
+        const UserGRPCService = this.service;
+        const metadata = this.metadata;
+        
+        const result = await TypesHelper.callGRPC(UserGRPCService, 'update', user, metadata);
+
+        const graphqlResponse = new User(UserGRPCService).init(result);
+
+        return graphqlResponse;
+    }
 }

@@ -4,6 +4,7 @@ const { buildSchema } = require('graphql');
 
 const ServiceFactory = require('./helper/ServiceFactory');
 const UserResolver = require('./resolvers/userResolver');
+const customFormatError = require('./Errors/CustomGraphError').customFormatError;
 
 require('dotenv').config();
 
@@ -31,7 +32,8 @@ app.use('/graphql', expressGraphQL(async (request, response) => ({
     schema,
     rootValue: root,
     context: {...request, ...response, ...context},
-    graphiql: true
+    graphiql: true,
+    customFormatError
 }))
 );
 app.listen(port);

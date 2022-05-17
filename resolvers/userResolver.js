@@ -6,11 +6,9 @@ module.exports = class userResolver {
         const { userServiceRoutes, req, res } = context;
 
         const metadata = new grpc.Metadata();
-        // if(req.cookies.jwt){
-        //     metadata.add('jwt', req.cookies.jwt);
-        // }
+        
         const userType = new User(userServiceRoutes, metadata, res);
-        //userType.init(args);
+        
         return userType;
     }
 }
