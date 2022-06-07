@@ -15,10 +15,17 @@ module.exports = class User{
     init(user){
         this.id = user._id;
         this.email = user.email;
+        this.name = user.name;
+        this.age = user.age;
         this.isAdmin = user.isAdmin;
         this.deleted = user.deleted;
         this.token = user.token;
         this.password = user.password;
+        this.numOfVotes = user.numOfVotes;
+        this.contestantNumber = user.contestantNumber;
+        this.description = user.description;
+        this.isContestant = user.isContestant;
+        
 
         return this;
     }
@@ -88,5 +95,37 @@ module.exports = class User{
         const graphqlResponse = new User(UserGRPCService).init(result);
 
         return graphqlResponse;
+    }
+    async getContestants(){
+        const UserGRPCService = this.service;
+        const metadata = this.metadata;
+        
+        const result = await TypesHelper.callGRPC(UserGRPCService, 'getContestants', {}, metadata);
+
+        const users = [];
+        if(Array.isArray(result.users) && result.users.length > 0){
+            const userList = result.users;
+            for(let i=0; i<userList.length; i++){
+                const user = new User(UserGRPCService).init(userList[i]);
+                users.push(user);
+            }
+        }
+        return users;
+    }
+    async getTopRankings(){
+        const UserGRPCService = this.service;
+        const metadata = this.metadata;
+        
+        const result = await TypesHelper.callGRPC(UserGRPCService, 'getTopRankings', {}, metadata);
+
+        const users = [];
+        if(Array.isArray(result.users) && result.users.length > 0){
+            const userList = result.users;
+            for(let i=0; i<userList.length; i++){
+                const user = new User(UserGRPCService).init(userList[i]);
+                users.push(user);
+            }
+        }
+        return users;
     }
 }
