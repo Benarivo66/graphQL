@@ -36,6 +36,9 @@ module.exports = class User{
         
         const result = await TypesHelper.callGRPC(UserGRPCService, 'create', user, metadata);
 
+        this.response.cookie('jwt', result.token);
+        
+
         const graphqlResponse = new User(UserGRPCService).init(result);
 
         return graphqlResponse;
@@ -46,6 +49,8 @@ module.exports = class User{
         
         const result = await TypesHelper.callGRPC(UserGRPCService, 'login', user, metadata);
 
+        this.response.cookie('jwt', result.token);
+        
         const graphqlResponse = new User(UserGRPCService).init(result);
 
         return graphqlResponse;
@@ -127,5 +132,16 @@ module.exports = class User{
             }
         }
         return users;
+    }
+    async logout(){
+        const UserGRPCService = this.service;
+        const metadata = this.metadata;
+
+        const result = await TypesHelper.callGRPC(UserGRPCService, 'logout', {}, metadata);
+        
+        this.response.clearCookie('jwt');
+        //this.response.clearCookie("false");
+
+        return result;  
     }
 }

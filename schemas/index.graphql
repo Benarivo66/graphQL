@@ -28,6 +28,11 @@
      update(_id: ID, email: String, name: String, age: Int, isContestant: Boolean, isAdmin: Boolean, description: String): User
      getContestants: [User]
      getTopRankings: [User]
+     logout: logoutGraphQLType
+ }
+
+ type logoutGraphQLType {
+     message: String
  }
 
  
